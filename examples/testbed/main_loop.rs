@@ -108,7 +108,6 @@ pub fn init(title: &str) -> System {
 }
 
 
-
 impl System {
     pub fn main_loop(self) {
         let System {
@@ -319,10 +318,10 @@ impl System {
                                         g_debug_draw.clone(),
                                     );
                                 },
-                                Some(VirtualKeyCode::Space) => {
-                                    // Launch a bomb.
-                                    s_test.borrow_mut().launch_bomb_rand();
-                                },
+                                // Some(VirtualKeyCode::Space) => {
+                                //     // Launch a bomb.
+                                //     s_test.borrow_mut().launch_bomb_rand();
+                                // },
                                 Some(VirtualKeyCode::O) => {
                                     s_settings.m_single_step = !s_settings.m_single_step;
                                 },
@@ -354,7 +353,7 @@ impl System {
                                         g_debug_draw.clone()
                                     );
                                 },
-                                Some(VirtualKeyCode::Tab) => {
+                                Some(VirtualKeyCode::Space) => {
                                     let mut d = g_debug_draw.borrow_mut();
                                     d.m_show_ui = !d.m_show_ui;
                                 },
@@ -475,11 +474,11 @@ impl System {
         g_debug_draw: Rc<RefCell<TestBedDebugDraw>>,
         control_flow: &mut ControlFlow,
     ) {
+
         let menu_width = 230;
 
         if g_debug_draw.borrow().m_show_ui
         {
-
             imgui::Window::new("Tools")
                 .title_bar(false)
                 .flags(
@@ -600,6 +599,7 @@ impl System {
                         });
                     });
                 });
+            
 
             s_test.borrow_mut().update_ui(&ui);
         }
